@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Picker Example</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+        .cssclassdob {
+            display: none;
+        }
+
+        /* Example style for hidden element */
+    </style>
+</head>
+
+<body>
+
+    <input type="text" class="dob-dated-picker" placeholder="Select Date of Birth">
+    <div class="cssclassdob">This is hidden until a date is selected.</div>
+
+    <script>
+        setTimeout(() => {
+            var dateToday = new Date();
+            var yrRange = (dateToday.getFullYear() - 65) + ":" + (dateToday.getFullYear() - 22);
+            $(".dob-dated-picker").datepicker({
+                maxDate: '-22y',
+                minDate: '-65y',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: yrRange,
+                onSelect: function (dateString, txtDate) {
+                    $('.cssclassdob').show(); // Show the hidden element when a date is selected
+                    console.log("Selected Date: " + dateString + "\nTextBox ID: " + txtDate);
+                }
+            });
+        }, 1000); // Adjust the delay as needed
+    </script>
+
+</body>
+
+</html>
